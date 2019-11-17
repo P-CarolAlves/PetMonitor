@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=divice-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<title>PetMonitor</title>
+<!-- if lt IE9 -->
+	<script type="text/javascript" src="js/html5shiv.js"></script>
+	<script type="text/javascript" src="js/css3-mediaqueries.min.js"></script>
+<!--[endif]-->
+<!-- Reset CSS -->
+	<link rel="stylesheet" href="css/reset.css">
+<!-- Jquery -->
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<!-- CSS personaizado -->
+	<link rel="stylesheet" href="css/style.css">
+<!-- JavaScript GPS -->
+	<script type="text/javascript" src="js/loc.js"></script>
+<!-- OpenLayer API -->
+    <script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/build/ol.js"></script>
+</head>
+<body>
+<!-- Todas imagens desse tite foi retirada de um site de livre uso comercia: https://pixabay.com/pt/ -->
+	<!-- Cria contaner navegação -->
+	<nav class="navegacao" aria-haspopup="true">
+		<a class="logo" href="#"></a>
+		<a class="mobile" onclick="mobileMenu()"><span id="btMob">&equiv;</span></a>
+		<ul id="nav-link">
+			<li id="inicio"><a href="">Início</a></li>
+			<li id="empresa"><a href="">Empresa</a></li>
+			<li id="produtos"><a href="">Produtos</a></li>
+			<li id="contato" class="last"><a href="">Contato</a></li>
+		</ul>
+	</nav>
+	<main id="container">
+		<section>
+			<article class="home">
+				<header>
+						<center><img src="img/logo1.png">
+							<h1><font size="8" face="pet"> P </font> Segurança para seu amigo <font size="8" face="pet"> P </font> </h1>
+				</header>
+				<p class="desk">
+					A tecnologia está cada vez mais presente em nossas vidas, agora a nova tendência é o uso de aplicativo para localização de <b>PETS</b>.<br>
+					Nossos amiguinhos são muito curiosos e ativos, fazendo a gente levar alguns sustos e preocupações quando não estamos por perto.
+				</p>
+				<p>
+					Pensando nisso, a <b>PetMonitor</b> desenvolveu um sistema de monitoramento para a segurança de seus animalzinho.<br>
+					 Com nosso sistema através de um computador ou celular você sera avisado quando ele sair da sua área de sugurança.
+				</p>
+			</article>
+			<!-- Formuario para localização -->
+			<h2 align="center">Dados do Pet</h2>
+			<ul class="locPet">
+				<form method="post" action="" id="localiza">
+				<li>
+					<input type="text" id="nomepet" maxlength="12" name="nomepet" placeholder="Nome do animal" autocomplete="off" maxlength="12" required="requerid" >
+				</li>
+				<li>
+					<input type="text" id="raca" maxlength="12" name="raca" placeholder="Raça:" autocomplete="off" maxlength="12" required="requerid" >
+				</li>
+				<li class="sexo">
+					<!--Macho -->
+					<input id="raca-m" class="sexo" type="radio" name="sexo" value="M" checked>
+					<label class="racem" for="raca-m"></label>
+					<!--Fêmea-->
+					<input id="raca-f" class="sexo" type="radio" name="sexo" value="F">
+					<label class="racef" for="raca-f"></label>
+				</li>
+				<li>
+					<input type="submit" name="localiza" value="Localizar">
+				</li>
+				</form>
+			</ul>
+		</section>
+		<footer id="footer">
+			<p align="center"><b><font color="#009DFF">Entre em contato conosco</font></b><br>
+				<span></span>(15) 1234 5678<br>
+				<span></span>atividade.unopar@petmonitor.com.br<br>
+				<span></span>Rua. Brigadeiro Tobias – Centro<br>
+				Sorocaba /SP
+			</p>
+		</footer>
+	</main>
+	<script type="text/javascript">
+	/* Botão mobile */
+	function mobileMenu(){
+		var x = document.getElementById('nav-link');
+		var y = document.getElementById('btMob');
+
+		if(x.className == ''){x.classList = 'show'; y.textContent = 'M';}else{x.classList = ''; y.innerHTML = 'a';}
+	}
+	window.onresize = function(){
+		var x = document.getElementById('nav-link');
+		var y = document.getElementById('btMob');
+
+		x.classList = '';
+		y.innerHTML = 'a';
+	}
+	/*Parar o envio do Formulario*/
+	   $(document).ready(function(){
+		   $("#localiza").on("submit", function(e){
+		       e.preventDefault();
+		       givLoc();  
+		   });
+		});
+</script>
+<!--Som alerta -->
+	<audio loop="loop">
+		<source src="audio/alerta.mp3" type="audio/mp3">
+		<source src="audio/alerta.oog" type="audio/oog">
+		<source src="audio/alerta.wmv" type="audio/wmv">
+	</audio>
+</body>
+</html>
